@@ -83,7 +83,7 @@ if st.session_state.step == 1:
                 st.session_state.sub_values = df['SUB'].unique().tolist()
                 st.session_state.step = 2
                 st.success("File successfully uploaded! Please continue to the next step.")
-                st.experimental_rerun()
+                st.rerun()
         
         except Exception as e:
             st.error(f"Error: {str(e)}")
@@ -119,11 +119,11 @@ elif st.session_state.step == 2:
         else:
             st.session_state.recipients = df[['First_Name', 'Email']].to_dict('records')
             st.session_state.step = 3
-            st.experimental_rerun()
+            st.rerun()
 
     if st.button("Go Back", key="back_to_upload"):
         st.session_state.step = 1
-        st.experimental_rerun()
+        st.rerun()
 
 # Step 3: Recipients Preview
 elif st.session_state.step == 3:
@@ -136,11 +136,11 @@ elif st.session_state.step == 3:
     
     if st.button("Continue to Email Template"):
         st.session_state.step = 4
-        st.experimental_rerun()
+        st.rerun()
     
     if st.button("Go Back", key="back_to_filters"):
         st.session_state.step = 2
-        st.experimental_rerun()
+        st.rerun()
 
 # Step 4: Email Template
 elif st.session_state.step == 4:
@@ -202,7 +202,7 @@ elif st.session_state.step == 4:
                     
                     if st.button("Start Over"):
                         reset_app()
-                        st.experimental_rerun()
+                        st.rerun()
                         
                 except Exception as e:
                     st.error(f"Error sending emails: {str(e)}")
@@ -210,7 +210,7 @@ elif st.session_state.step == 4:
     with col2:
         if st.button("Go Back", key="back_to_preview"):
             st.session_state.step = 3
-            st.experimental_rerun()
+            st.rerun()
     
     # Email preview section
     st.subheader("Email Preview")
